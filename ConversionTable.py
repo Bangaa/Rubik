@@ -28,10 +28,17 @@ class ConversionTable:
             self.__dicc__[jlet] = ipos
             i += 1
     def get(self, arg):
-        if type(arg) is str:
-            return self.__dicc__[arg]
-        elif type(arg) is int:
-            return self.__alf__[arg]
+        tipo = type(arg)
+        try:
+            if tipo is str:
+                return self.__dicc__[arg]
+            elif tipo is int:
+                return self.__alf__[arg]
+        except:
+            if tipo is str: 
+                return -1
+            else:
+                return "~"
 
 
     def __str__(self):

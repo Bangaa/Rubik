@@ -70,7 +70,7 @@ class MatEncriptor:
             j = 0
             while j < len(fila):
                 char = fila[j]
-                fila[j] = self.ct.__dicc__[char]
+                fila[j] = self.ct.get(char)
                 j += 1
             mat.append(fila)
             i += 1 
