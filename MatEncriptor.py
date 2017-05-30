@@ -34,7 +34,22 @@ class MatEncriptor:
         return enctxt
 
     def desencriptar(self, texto):
-        return
+        matriz = self.__matEnc__(texto)
+
+        i = len(matriz) - 1
+        while i >= 0:
+            matriz = matriz.T
+            self.__sustituir__(matriz, i)
+            i -= 1
+
+        lista = matriz.flatten().tolist()
+        enctxt = ""
+
+        for elem in lista:
+            enctxt += self.ct.get(elem)
+
+        return enctxt.strip()
+
 
 
     def __matEnc__(self, text):

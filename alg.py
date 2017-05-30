@@ -3,18 +3,57 @@ import MatEncriptor as ME
 import ConversionTable as CT
 import sys
 
-if len(sys.argv) == 1:
+def encriptarArchivo(clave, filename):
+    ct = CT.ConversionTable(clave)
+    enc = ME.MatEncriptor(ct)
+
+    archivo = open(filename, "r")
+    txt = archivo.read()
+    archivo.close()
+
+    archivo = open(filename+".cif", "w")
+    archivo.write(enc.encriptar(txt))
+    archivo.close()
+
+def desencriptarArchivo(clave, filename):
+    ct = CT.ConversionTable(clave)
+    enc = ME.MatEncriptor(ct)
+
+    archivo = open(filename, "r")
+    txt = archivo.read()
+    archivo.close()
+
+    archivo = open(filename+".des", "w")
+    archivo.write(enc.desencriptar(txt))
+    archivo.close()
+
+
+filename = ""
+clave = ""
+encriptar = True
+
+if len(sys.argv) < 4:
     filename = raw_input("Archivo entrada: ")
     clave = raw_input("Clave (key): ")
-elif len(sys.argv) == 3:
-    filename = sys.argv[1]
-    clave = sys.argv[2]
+    if raw_input("Encriptar o desencriptar [e/d]: ") == "e":
+        encriptar = True
+    else:
+        encriptar = False
 
-ct = CT.ConversionTable(clave)
-enc = ME.MatEncriptor(ct)
+else:
+    if sys.argv[1] == "e":
+        encriptar = True
+    else:
+        encriptar = False
+    filename = sys.argv[2]
+    clave = sys.argv[3]
 
 try:
-    enc_txt = enc.encriptar(open(filename).read())
-    print enc_txt
+
+    if encriptar:
+        encriptarArchivo(clave, filename)
+    else:
+        desencriptarArchivo(clave, filename)
+
 except IOError as ioe:
     print "ERROR: No se encuentra el archivo '%s'" % (filename)
