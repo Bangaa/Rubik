@@ -1,10 +1,15 @@
 from math import sqrt,ceil
+import sys
 
 try:
     import numpy as np
 except ImportError:
     import pip
-    pip.main(['install', numpy])
+    if pip.main(['install', 'numpy']) is 0:
+        import numpy as np
+    else:
+        sys.exit(1)
+        
 
 # Encriptador
 
