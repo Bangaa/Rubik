@@ -15,12 +15,13 @@ Para encriptar se necesitan 3 parámetros.
    compuesto únicamente por carácteres ASCII.
 3. **CLAVE**: Es la clave (o llave) que se usa para encriptar el archivo.
 
-    python alg.py e ARCHIVO CLAVE
+```
+python alg.py e ARCHIVO CLAVE
     
-    # ejm
+# ejm
 
-    python alg.py e mensaje.txt "qwertyuiop"
-
+python alg.py e mensaje.txt "qwertyuiop"
+```
 
 ## Desencriptar
 
